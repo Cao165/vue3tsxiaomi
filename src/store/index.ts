@@ -1,14 +1,32 @@
-import { createStore } from 'vuex'
+import { defineStore } from 'pinia'
 
-export default createStore({
-  state: {
+export const useMainStore = defineStore('main', {
+  state: () => {
+    return {
+      count:100,
+      shaps:[] as any,
+    }
   },
-  getters: {
+  getters:{
+    getcounts():any{
+      return this.count
+    },
+    getshapss():any{
+      return this.shaps.length
+    },
+    getshapssle():any{
+      return this.shaps
+    }
   },
-  mutations: {
+  actions:{
+    setcounts(value:any){
+      this.count=value
+    },
+    setshapss(values:any){
+      this.shaps.push(values)
+    }
   },
-  actions: {
-  },
-  modules: {
+   persist: {
+    enabled: true,
   }
 })
